@@ -1,0 +1,2 @@
+rootProject.name = "Qizil_kitap"
+include ':app'
