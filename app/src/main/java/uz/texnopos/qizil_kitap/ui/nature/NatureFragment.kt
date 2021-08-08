@@ -8,6 +8,8 @@ import kotlinx.android.synthetic.main.fragment_nature.*
 import uz.texnopos.qizil_kitap.R
 import uz.texnopos.qizil_kitap.data.RedBookDatabase
 import uz.texnopos.qizil_kitap.data.dao.NatureDao
+import uz.texnopos.qizil_kitap.ui.MainActivity
+
 
 class NatureFragment : Fragment(R.layout.fragment_nature) {
     private val myAdapter = NatureListAdapter()
@@ -16,11 +18,12 @@ class NatureFragment : Fragment(R.layout.fragment_nature) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.adapter = myAdapter
         recyclerView.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
+        val type = arguments?.getInt(MainActivity.TYPE_ID) ?:1
         dao = RedBookDatabase.getInstance(requireContext()).dao()
-        setData()
+        setData(type)
     }
 
-    private fun setData(){
-    myAdapter.models = dao.getAllNature()
+    private fun setData(type : Int){
+    myAdapter.models = dao.getAllNature(type)
     }
 }
