@@ -1,4 +1,4 @@
-package uz.texnopos.qizil_kitap
+package uz.texnopos.qizil_kitap.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,7 +8,9 @@ import com.google.android.material.navigation.NavigationView
 
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import uz.texnopos.qizil_kitap.R
 import uz.texnopos.qizil_kitap.databinding.ActivityMainBinding
+import uz.texnopos.qizil_kitap.ui.nature.NatureFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +31,10 @@ class MainActivity : AppCompatActivity() {
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val toggle = ActionBarDrawerToggle(this,drawerLayout,binding.appBarMain.toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(this,drawerLayout,binding.appBarMain.toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navView.setNavigationItemSelectedListener {
@@ -37,15 +42,16 @@ class MainActivity : AppCompatActivity() {
            R.id.nav_home ->{
                return@setNavigationItemSelectedListener true
            }
-           R.id.nav_gallery->{
+           R.id.nav_gallery ->{
                return@setNavigationItemSelectedListener true
            }
-           R.id.nav_slideshow->{
+           R.id.nav_slideshow ->{
            return@setNavigationItemSelectedListener true
            }
                else ->{return@setNavigationItemSelectedListener  false}
            }
         }
+        supportFragmentManager.beginTransaction().replace(R.id.FrameLayoutContainer,NatureFragment()).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

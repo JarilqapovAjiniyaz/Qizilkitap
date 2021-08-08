@@ -16,6 +16,7 @@ fun getInstance(context: Context) : RedBookDatabase = Room.databaseBuilder(
     RedBookDatabase::class.java, "book.db"
 )
     .createFromAsset("book.db")
+    .allowMainThreadQueries()
     .build()
 }
 abstract fun dao():NatureDao

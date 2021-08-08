@@ -8,7 +8,7 @@ data class nature(
 @PrimaryKey
 val id : Int,
 @ColumnInfo(name = "type")
-val type : String,
+val type : Int,
 @ColumnInfo(name = "nameUzb")
 val nameUzb : String,
 @ColumnInfo(name = "nameRus")
